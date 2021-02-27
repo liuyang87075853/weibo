@@ -34,3 +34,24 @@ footer{
     }
 
 }
+/* User gravatar */
+section.user_info{
+    padding-bottom: 10px;
+    margin-top:20px;
+    text-align:center;
+    .gravatar{
+        float: none;
+        max-width: 70px;
+    }
+    h1{
+        font-size: 1.4rem;
+        letter-spacing: -1px;
+        margin-top: 15px;
+        margin-bottom: 3px;
+    }
+}
+.gravatar{
+    float: left;
+    max-width: 50px;
+    border-radius: 50%;
+}
