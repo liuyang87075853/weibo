@@ -18,6 +18,10 @@ class UserController extends Controller
             'only'=>['create']
         ]);
     }
+    public function index(){
+        $users=User::paginate(6);
+        return view('users.index',compact('users'));
+    }
     /* 注册用户 */
     public function create()
     {
