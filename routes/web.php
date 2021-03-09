@@ -18,6 +18,8 @@ use App\Http\Controllers\SessionController;
 Route::get('/', [StaticPagesController::class,'home'])->name('home');
 Route::get('/help',[StaticPagesController::class,'help'])->name('help');
 Route::get('/about',[StaticPagesController::class,'about'])->name('about');
+Route::get('/welcome',[StaticPagesController::class,'welcome'])->name('welcome');
+Route::post('/form',[StaticPagesController::class,'form'])->name('form');
 Route::get('signup',[UserController::class,'create'])->name('signup');
 
 Route::resource('users',UserController::class);
