@@ -11,7 +11,7 @@ class UserController extends Controller
     {
         /* 中间件限制未登陆用户可访问页面 */
         $this->middleware('auth',[
-            'except'=>['show','create','store']
+            'except'=>['show','create','store','index']
         ]);
         //只让未登陆用户访问注册 页面
         $this->middleware('guest',[
@@ -73,5 +73,13 @@ class UserController extends Controller
         session()->flash('success','个人资料更新成功！');
 
         return redirect()->route('users.show',$user);
+    }
+    public function destroy(User $user)
+    {
+        //删除授权
+        $this->authorize('destroy',$user);
+        $user->delete();
+        session()->flash('success','成功删除用户！');
+        return back();
     }
 }
