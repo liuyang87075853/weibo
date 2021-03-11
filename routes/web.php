@@ -29,3 +29,5 @@ Route::post('login',[SessionController::class,'store'])->name('login');
 Route::delete('logout',[SessionController::class,'destroy'])->name('logout');
 
 Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
+//邮件验证
+Route::get('signup/confirm/{token}',[UserController::class,'confirmEmail'])->name('confirm_email');
