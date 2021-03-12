@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\PasswordController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,3 +32,8 @@ Route::delete('logout',[SessionController::class,'destroy'])->name('logout');
 Route::get('/users/{user}/edit',[UserController::class,'edit'])->name('users.edit');
 //邮件验证
 Route::get('signup/confirm/{token}',[UserController::class,'confirmEmail'])->name('confirm_email');
+Route::get('password/reset',[PasswordController::class,'showLinkRequestForm'])->name('password.request');
+Route::post('password/email',[PasswordController::class,'sendResetLinkEmail'])->name('password.email');
+
+Route::get('password/reset/{token}',[PasswordController::class,'showResetForm'])->name('password.reset');
+Route::post('password/reset',[PasswordController::class,'reset'])->name('password.update');
