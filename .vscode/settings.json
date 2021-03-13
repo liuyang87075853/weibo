@@ -1,4 +1,4 @@
 {
-    "editor.fontFamily": "'Jetbrains Mono',Consolas, 'Courier New', monospace",
+    "editor.fontFamily": "'Jetbrains Mono',Consolas, 'Courier New', 'Microsoft YaHei',monospace",
     "editor.fontSize": 16
 }

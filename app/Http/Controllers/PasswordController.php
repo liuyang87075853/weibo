@@ -12,6 +12,17 @@ use Mail;
 
 class PasswordController extends Controller
 {
+    public function __construct()
+    {
+        //找回密码页面限流，每1分钟可访问2次
+        $this->middleware('throttle:2,1', [
+            'only' => ['showLinkRequestForm'],
+        ]);
+        //发送密码重置邮件限流，每10分钟3次，
+        $this->middleware('throttle:3,10', [
+            'only' => ['sendResetLinkEmail'],
+        ]);
+    }
     public function showLinkRequestForm()
     {
         return view('auth.passwords.email');
