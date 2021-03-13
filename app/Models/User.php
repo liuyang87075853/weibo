@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -11,7 +10,7 @@ use Illuminate\Support\Str;
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
-    protected $table='users';
+    protected $table = 'users';
     /**
      * The attributes that are mass assignable.
      *
@@ -41,14 +40,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function gravatar($size='100'){
-        $hash=md5(strtolower(trim($this->attributes['email'])));
+    public function gravatar($size = '100')
+    {
+        $hash = md5(strtolower(trim($this->attributes['email'])));
         return "https://gravatar.loli.net/avatar/$hash?s=$size";
     }
-    public static function boot(){
+    public static function boot()
+    {
         parent::boot();
-        static::creating(function($user){
+        static::creating(function ($user) {
             $user->activation_token = Str::random(10);
         });
+    }
+    public function statuses()
+    {
+        return $this->hasMany(Status::class);
     }
 }
