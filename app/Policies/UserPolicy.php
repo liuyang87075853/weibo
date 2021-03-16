@@ -16,15 +16,19 @@ class UserPolicy
      */
     /* public function __construct()
     {
-        //
+    //
     } */
-    public function update(User $currentUser,User $user)
+    public function update(User $currentUser, User $user)
     {
-        return $currentUser->id===$user->id;
+        return $currentUser->id === $user->id;
     }
     //用户删除策略，必须是管理员且不能删除自己
-    public function destroy(User $currentUser,User $user)
+    public function destroy(User $currentUser, User $user)
     {
-        return $currentUser->is_admin && $currentUser->id !==$user->id;
+        return $currentUser->is_admin && $currentUser->id !== $user->id;
+    }
+    public function follow(User $currentUser, User $user)
+    {
+        return $currentUser->id !== $user->id;
     }
 }
